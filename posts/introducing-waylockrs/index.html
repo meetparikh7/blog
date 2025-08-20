@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Introducing waylockrs &amp; rust-y lessons learnt</title>
+		<meta name="description" content="waylockrs is a wayland screen-lock utility">
+		<link rel="alternate" href="/blog/feed/feed.xml" type="application/atom+xml" title="Meet&#39;s Ramblings">
+		
+		
+		
+		<style>/* This is an arbitrary CSS string added to the bundle */
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #e0e0e0;
+	--color-gray-50: #C0C0C0;
+	--color-gray-90: #333;
+
+	--background-color: #fff;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #082840;
+	--text-color-link-active: #5f2b48;
+	--text-color-link-visited: #17050F;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #e0e0e0;
+		--color-gray-50: #C0C0C0;
+		--color-gray-90: #dad8d8;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #1493fb;
+		--text-color-link-active: #6969f7;
+		--text-color-link-visited: #a6a6f8;
+
+		--background-color: #15202b;
+	}
+}
+
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	max-width: 80ch;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+/* Fluid images via https://www.zachleat.com/web/fluid-images/ */
+img{
+  max-width: 100%;
+}
+img[width][height] {
+  height: auto;
+}
+img[src$=".svg"] {
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+video,
+iframe {
+	width: 100%;
+	height: auto;
+}
+iframe {
+	aspect-ratio: 16/9;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main,
+footer {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+
+#skip-link {
+	text-decoration: none;
+	background: var(--background-color);
+	color: var(--text-color);
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--color-gray-90);
+	border-radius: 2px;
+}
+
+/* Prevent visually-hidden skip link fom pushing content around when focused */
+#skip-link.visually-hidden:focus {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	/* Ensure it is positioned on top of everything else when it is shown */
+	z-index: 999;
+}
+
+.links-nextprev {
+	display: flex;
+	justify-content: space-between;
+	gap: .5em 1em;
+	list-style: "";
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*="language-"]) {
+	margin: .5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow-x: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+}
+.home-link {
+	flex-grow: 1;
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	gap: .5em 1em;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	counter-reset: start-from var(--postlist-index);
+	list-style: none;
+	padding: 0;
+	padding-left: 1.5rem;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	counter-increment: start-from -1;
+	margin-bottom: 1em;
+}
+.postlist-item:before {
+	display: inline-block;
+	pointer-events: none;
+	content: "" counter(start-from, decimal-leading-zero) ". ";
+	line-height: 100%;
+	text-align: right;
+	margin-left: -1.5rem;
+}
+.postlist-date,
+.postlist-item:before {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	padding-left: .25em;
+	padding-right: .5em;
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: .5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.post-metadata time {
+	margin-right: 1em;
+}
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}</style>
+		
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/blog/" class="home-link">Meet&#39;s Ramblings</a>
+			<nav>
+				<h2 class="visually-hidden" id="top-level-navigation-menu">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/blog/">Home</a></li>
+					<li class="nav-item"><a href="/blog/archive/">Archive</a></li>
+					<li class="nav-item"><a href="/blog/feed/feed.xml">Feed</a></li>
+				<li class="nav-item"><a href="https://meetparikh7.github.io/">Portfolio</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="main">
+			<heading-anchors>
+				
+
+
+<h1 id="introducing-waylockrs-and-rust-y-lessons-learnt">Introducing waylockrs &amp; rust-y lessons learnt</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2025-07-25">25 July 2025</time></li>
+	<li><a href="/blog/tags/rust/" class="post-tag">Rust</a>, </li>
+	<li><a href="/blog/tags/wayland/" class="post-tag"> Wayland</a></li>
+</ul>
+
+<p>If you use a Wayland compositor that is not part of a Desktop environment like GNOME or KDE, you have to install a bunch of utilities for doing desktop stuff - like toolbars, launchers, etc. A lot of these utilities are written in C. I implemented a lock screen utility called <a href="https://github.com/meetparikh7/waylockrs">waylockrs</a> for such compositors in Rust, and this post explains the why, how and some small Rust learnings.</p>
+<p>I had not developed an application using Wayland or the modern Linux Graphic stack before and it was a fun learning experience for me. This post should not require any Linux graphic stack knowledge but hopefully sheds some light on it.</p>
+<h1 id="why">Why</h1>
+<p><a href="https://github.com/swaywm/swaylock">swaylock</a> is a popular screen locking utility for wayland. In the <code>ext-session-lock-v1</code> wayland protocol, which is used for this, the screen lock utility signals the compositor that the user has succesfully authenticated. This means there is flexibility in implementation of the <code>session-lock</code>, i.e. it can be a screen saver or a lock-screen or a captcha challenge for when the robots take over. It also means, that if there were any bug in such a lock screen, the user can gain access to your computer, and say access your email or your active SSH sessions, or worse, the top-secret project plan that you have been procastinating over for a year.</p>
+<p>Unfortunately the attack surface is rather large for a &quot;practical lock-screen&quot;, something that displays a image, maybe the clock and some typing indicator. There is a possibility of a buffer overflow or use-after-free attack to get the lock screen to send the unlock signal to the compositor. My aim was to write a drop-in replacement for swaylock in Rust, which can then be improved upon. As of now, swaylock is probably much more safer and hardened by years of development.</p>
+<h1 id="the-moving-parts">The moving parts</h1>
+<p>We use the following libraries to implement <a href="https://github.com/meetparikh7/waylockrs">waylockrs</a>. (Feel free to skip this section
+)</p>
+<h2 id="wayland-and-smithay-client-toolkit">Wayland &amp; Smithay Client Toolkit</h2>
+<p>Wayland itself works as a client-server model. The server is the wayland compositor and the client is the application, in this case the lock-screen. They talk in terms of messages and object handles. The object handles can be created and released by the client and the server frees them when they have no dangling references (like an <code>Arc&lt;_&gt;</code> but across server/client). The messages can refer to these objects, for example <code>mouseA</code> moved <code>10px</code>.</p>
+<p>Wayland is split out into protocols, each dealing with some aspect of a desktop, say one for monitors, one for input, one for windows and so on. On startup of an application you are provided a global object which lists all the protocols available, and you chose to instantiate an object for each protocol you care about.</p>
+<p>The <a href="https://github.com/smithay/client-toolkit">SCTK</a> and other Smithay crates abstract away the wayland protocol. Typically when using the SCTK you have a global state object and then you implement a bunch of traits on them, one for each wayland protocol you want to handle. Then these trait handlers can be called in an event loop model. More details can be found in the <a href="https://smithay.github.io/book/intro.html">Smithay book</a>. They even have a <a href="https://github.com/Smithay/client-toolkit/blob/master/examples/session_lock.rs">helpful example</a> which locks and auto-unlocks the screen in 5 seconds.</p>
+<h2 id="pam">PAM</h2>
+<p>Most modern linux distros ship with PAM aka Pluggable Authentication Modules. This C library represents a Linux/BSD API allows you to authenticate the user and do more like fingerprint auth etc. For the purpose of authentication, it requires you to create a context object and pass a bunch of function pointers that the OS will call, for prompting for password etc. Luckily the <a href="https://crates.io/crates/pam-client">pam-client</a> crate abstracts away the C API for us.</p>
+<h2 id="cairo">Cairo</h2>
+<p>Wayland is concerned around displays, surfaces and compositing, i.e laying out different windows on the screen. It does not give us drawing primitives like circles or textures, but instead gives you buffers of whatever size you request and allows you to paint those buffers on a &quot;surface&quot; which can be a (part of a) window or in the case of the lock screen the entire display.</p>
+<p>A lock sreen without a background image or a typing indicator is not super user friendly. This is where graphics libraries like Cairo &amp; Skia come in. They are the same ones used in browsers to render web pages. Cairo is the more user-friendly one and has friendly Rust <a href="https://docs.rs/crate/cairo-rs/latest">bindings</a>. It also allowed me to port over swaylock's drawing code much easily (as it also uses Cairo).</p>
+<h1 id="the-learnings">The learnings</h1>
+<h2 id="double-buffering">Double Buffering</h2>
+<p>Wayland and other graphics stuff like games in general use two memory buffers - one which is shown on the screen, and the other one which is being rendered too. Once rendering is finished, you &quot;commit&quot; the new buffer and the compositor choses when to display it.</p>
+<p>For example if you were able to prepare the frame faster than the screen refresh rate, the compositor will wait for the next refresh to wait. If you had asked for the frame callback, the compositor would &quot;call you&quot; (emit a message in the channel) when this frame was drawn.</p>
+<p>Since the compositor is always displaying a buffer that is stable and not being mutated, there is no screen tearing or flickering.</p>
+<p>However implementing this is somewhat hard. A Wayland client can have multiple surfaces. Each surface can have subsurfaces. Subsurfaces maybe commited and &quot;damaged&quot; async, which means you have the power to not destroy a surface if it has not changed. We also need to handle the &quot;configure&quot; callback which tells us the surface size, when the window (or say the monitor resolution) changes. This callback is the one which actually lets us allocate the buffers as we now know the size of the area we are drawing and the number &amp; size of channels.</p>
+<p>For example in our lock screen, we have a background subsurface that displays an image and an indicator subsurface which displays the current time and a typing indicator. We ideally want to draw them async and not destroy the background subsurface unless the monitor resolution or window size has changed.</p>
+<p>Thus the logic is somewhat like:</p>
+<ol>
+<li>Wait for the configure callback to allocate buffers</li>
+<li>On configure, configure the surfaces and then invoke the draw function</li>
+<li>In the draw function, for each subsurface:
+<ol>
+<li>Write a functions that draw to the surface given the information <code>buffer, width, height, did_resize</code>. Here <code>buffer</code> should be the buffer not &quot;attached&quot; (not being used) by Wayland.</li>
+<li>This function can be smart and chose to not render if <code>did_resize = False</code> and/or there are no UI changes</li>
+<li>Thus this returns a boolean, which if <code>true</code>, call the wayland proxy objects to destroy the subsurface and commit the new buffer</li>
+<li>If a render did happen and a new frame has not been requested by another subsurface request a new frame.</li>
+</ol>
+</li>
+<li>When the new_frame callback happens call the draw function again from the application</li>
+</ol>
+<p>Rust gives us the power to use <code>Option</code> to represent a lot of this state, especially when a buffer is configured or not, and has first class functions, which when taken as generics have no cost. Using this we are able to abstract away the logic in step 3 into a neat <a href="https://github.com/meetparikh7/waylockrs/blob/main/src/easy_surface.rs"><code>easy_surface</code></a> struct.</p>
+<h2 id="secstr-and-how-to-represent-the-password-buffer-in-memory"><code>secstr</code> and how to represent the password buffer in memory</h2>
+<p>Representing the password in memory should be done with a &quot;few security features&quot;:</p>
+<ol>
+<li>On the password buffer being &quot;used&quot;, i.e. on &quot;drop&quot;, the resident memory should be zero-ed out</li>
+<li>Ideally the password buffer should never be written to swap memory
+<ul>
+<li>swap memory acts as a cache in case the current memory overflows</li>
+<li>It is usually backed by a disk or SSD, i.e. non-temporary storage</li>
+<li>Even after the password has been used, and if it has been paged to swap storage, the disk will contain the password bytes</li>
+</ul>
+</li>
+</ol>
+<p>Linux provides <a href="https://linux.die.net/man/2/mlock"><code>mlock</code></a> / <a href="https://linux.die.net/man/2/munlock"><code>munlock</code></a> syscalls which prevent a chunk of memory from being paged out to swap. We need a container that can represent a string / vector of bytes and that should invoke these syscalls.</p>
+<p>The flow here looks like:</p>
+<ol>
+<li>Allocate a chunk of memory</li>
+<li>On keypress, try to append some characters to the buffer</li>
+<li>If the buffer does not have capacity
+<ol>
+<li>Allocate a new buffer with enough capacity and <code>mlock</code> it</li>
+<li>Copy the original buffer and append the new characters</li>
+<li>Zeroize the previous buffer, <code>munlock</code> it and then release it</li>
+<li>Point the content to the new buffer</li>
+</ol>
+</li>
+<li>On <code>enter</code> key press, send this buffer to <code>PAM</code> which would handle freeing it.</li>
+</ol>
+<p>Luckily the <a href="https://crates.io/crates/secstr"><code>secstr</code></a> crate handles this for us. However it does not provide all the methods available on strings as the other use-case for this is to load immutable keys / tokens in memory. We wrap around the <code>SecVec</code> provided within it to handle password entry user interactions, i.e. append new characters and backspace. On password enter we hand it over to the pam part.</p>
+<h2 id="pam-threading-and-channels-using-calloop"><code>PAM</code>, threading and channels using <code>calloop</code></h2>
+<p>The Smithay crates operate in an event loop model which they call <a href="https://docs.rs/calloop/latest/calloop/index.html"><code>calloop</code></a>. This exposes channels similar to <a href="https://doc.rust-lang.org/std/sync/mpsc/fn.channel.html"><code>std::sync</code></a> but that can interact with automatically emit an event in the <code>calloop</code> instead of blocking the thread.</p>
+<p>The flow here is:</p>
+<ol>
+<li>On startup the application creates a thread</li>
+<li>This thread initiates a PAM context to authenticate the (signed in) user</li>
+<li>The PAM and main threads communicates via a calloop channel</li>
+<li>The main thread inserts this channel as a &quot;source&quot; in its calloop with a callback that will be called if there is a message</li>
+<li>When the user presses the &quot;enter&quot; key, a message to authenticate the user is sent via this channel</li>
+<li>The PAM thread on receiving this message will:
+<ul>
+<li>Try to authenticate the user via PAM</li>
+<li>Note this is a blocking call and PAM will add additional delay if there have been too many incorrect password attempts</li>
+<li>On response from PAM the auth state - success / failure is sent back to the main thread on the channel</li>
+</ul>
+</li>
+<li>While the PAM thread is authenticating, the main thread continues to run the calloop
+<ol>
+<li>The main thread calloop keeps processing wayland events, continuing to render - displaying an &quot;authenticating&quot; message, updating the clock, etc</li>
+<li>If the auth channel has a new message, the corresponding registered callback is called which can access the application state and unlock the <code>session_lock</code> or set state to invalid password, which would be displayed in the next render.</li>
+</ol>
+</li>
+</ol>
+<p>The calloop model along with channels provides and easy way to tie together blocking and unblocking APIs without having to deal with Rust async which can be troublesome with the borrow checker.</p>
+<h2 id="ai-and-backporting-settings-from-swaylock">AI and backporting settings from swaylock</h2>
+<p>One of the main features of the custom DE dream is customizability, which means a decent amount of config options. I wanted a modern <a href="https://github.com/meetparikh7/waylockrs/blob/main/defaults.toml">TOML config</a> for waylockrs instead of the CLI arguments is config adopted by swaylock. Note that the TOML arguments we use are still primarily strings / booleans so they can be configured bia CLI arguments.</p>
+<p>However I wanted to ease migration from swaylock and automatically port a swaylock config if one is detected. This requires parsing the swaylock config man page, finding out the corresponding keys in waylocksrs' TOML config spec and create a mapping.</p>
+<p>While I dont think LLMs as general purpose codign agents are great, LLMs excel at such small tasks, involving grokking small amounts of data and producing maybe invalid but still good enough code, especially if enough documentation / comments / language (i.e. English) are involved. I was able to quickly create a mapping between the two configs put it up in a separate module and easily port over swaylock configs.</p>
+<h1 id="summary">Summary</h1>
+<p><a href="https://github.com/meetparikh7/waylockrs">waylockrs</a> is avaialble to try out via DNF <a href="https://copr.fedorainfracloud.org/coprs/meetp7/waylockrs/">Copr</a> or via building from source. Do report issues and feedback on the <a href="https://github.com/meetparikh7/waylockrs/issues">tracker</a>.</p>
+<p>Hopefully this blog was a good introduction to Wayland / PAM and Smithay! This was my first foray into the ecosystem, let me know your comments or if I made a mistake!</p>
+
+
+<script src="https://utteranc.es/client.js" repo="meetparikh7/blog" issue-term="pathname" label="comments" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+	</script>
+
+			</heading-anchors>
+		</main>
+
+		<footer>
+			<p>
+				<em>Built with <a href="https://www.11ty.dev/">Eleventy v3.1.2</a></em>
+			</p>
+		</footer>
+
+		<!-- This page `/posts/introducing-waylockrs/` was built on 2025-08-20T06:31:13.896Z -->
+		<script type="module" src="/blog/dist/xbxy_EL6cU.js"></script>
+	</body>
+</html>

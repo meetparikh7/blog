@@ -1,90 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet href="pretty-atom-feed.xsl" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-  <title>Blog Title</title>
-  <subtitle>This is a longer description about your blog.</subtitle>
-  <link href="https://example.com/blog/feed/feed.xml" rel="self" />
-  <link href="https://example.com/blog/" />
-  <updated>2018-09-30T00:00:00Z</updated>
-  <id>https://example.com/blog/</id>
+  <title>Meet&#39;s Ramblings</title>
+  <subtitle>Ramblings about Rust, C++ &amp; Python while creating projects</subtitle>
+  <link href="https://meetparikh7.github.io/blog/feed/feed.xml" rel="self" />
+  <link href="https://meetparikh7.github.io/blog/blog" />
+  <updated>2025-07-25T00:00:00Z</updated>
+  <id>https://meetparikh7.github.io/blog/blog</id>
   <author>
-    <name>Your Name</name>
+    <name>Meet Parikh</name>
   </author>
   <entry>
-    <title>This is my fourth post</title>
-    <link href="https://example.com/blog/posts/fourthpost/" />
-    <updated>2018-09-30T00:00:00Z</updated>
-    <id>https://example.com/blog/posts/fourthpost/</id>
-    <content type="html">&lt;p&gt;Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.&lt;/p&gt;
-&lt;p&gt;Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.&lt;/p&gt;
-&lt;picture&gt;&lt;source type=&quot;image/avif&quot; srcset=&quot;https://example.com/blog/posts/fourthpost/xbVnp_hAou-350.avif 350w&quot;&gt;&lt;source type=&quot;image/webp&quot; srcset=&quot;https://example.com/blog/posts/fourthpost/xbVnp_hAou-350.webp 350w&quot;&gt;&lt;img loading=&quot;lazy&quot; decoding=&quot;async&quot; src=&quot;https://example.com/blog/posts/fourthpost/xbVnp_hAou-350.png&quot; alt=&quot;A possum parent and two possum kids hanging from the iconic red balloon&quot; width=&quot;350&quot; height=&quot;685&quot;&gt;&lt;/picture&gt;
-&lt;h2 id=&quot;section-header&quot;&gt;Section Header&lt;/h2&gt;
-&lt;p&gt;Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>This is my third post.</title>
-    <link href="https://example.com/blog/posts/thirdpost/" />
-    <updated>2018-08-24T00:00:00Z</updated>
-    <id>https://example.com/blog/posts/thirdpost/</id>
-    <content type="html">&lt;p&gt;Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.&lt;/p&gt;
-&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
-&lt;h3 id=&quot;this-is-a-very-long-heading-that-i-want-to-wrap-this-is-a-very-long-heading-that-i-want-to-wrap-this-is-a-very-long-heading-that-i-want-to-wrap-this-is-a-very-long-heading-that-i-want-to-wrap&quot;&gt;This is a very long heading that I want to wrap This is a very long heading that I want to wrap This is a very long heading that I want to wrap This is a very long heading that I want to wrap&lt;/h3&gt;
-&lt;p&gt;Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.&lt;/p&gt;
-&lt;pre class=&quot;language-js&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// this is a command&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;myCommand&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-	counter&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;// Test with a line break above this line.&lt;/span&gt;
-console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;Test&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;heading-with-a-link&quot;&gt;Heading with a &lt;a href=&quot;https://example.com/blog/posts/thirdpost/#code&quot;&gt;link&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// this is a command
-function myCommand() {
-	let counter = 0;
-	counter++;
-}
-
-// Test with a line break above this line.
-console.log(&#39;Test&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;section-header&quot;&gt;Section Header&lt;/h2&gt;
-&lt;p&gt;Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>This is my second post with a much longer title.</title>
-    <link href="https://example.com/blog/posts/secondpost/" />
-    <updated>2018-07-04T00:00:00Z</updated>
-    <id>https://example.com/blog/posts/secondpost/</id>
-    <content type="html">&lt;p&gt;Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.&lt;/p&gt;
-&lt;h2 id=&quot;section-header&quot;&gt;Section Header&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://example.com/blog/posts/firstpost/&quot;&gt;First post&lt;/a&gt;
-&lt;a href=&quot;https://example.com/blog/posts/thirdpost/&quot;&gt;Third post&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.&lt;/p&gt;
-&lt;p&gt;Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>This is my first post.</title>
-    <link href="https://example.com/blog/posts/firstpost/" />
-    <updated>2018-05-01T00:00:00Z</updated>
-    <id>https://example.com/blog/posts/firstpost/</id>
-    <content type="html">&lt;p&gt;Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.&lt;/p&gt;
-&lt;p&gt;Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.&lt;/p&gt;
-&lt;h2 id=&quot;section-header&quot;&gt;Section Header&lt;/h2&gt;
-&lt;p&gt;Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.&lt;/p&gt;
-&lt;pre class=&quot;language-diff-js&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-diff-js&quot;&gt; // this is a command
- function myCommand() {
-+  let counter = 0;
--  let counter = 1;
-   counter++;
- }
-
- // Test with a line break above this line.
- console.log(&#39;Test&#39;);&lt;/code&gt;&lt;/pre&gt;
+    <title>Introducing waylockrs &amp; rust-y lessons learnt</title>
+    <link href="https://meetparikh7.github.io/blog/posts/introducing-waylockrs/" />
+    <updated>2025-07-25T00:00:00Z</updated>
+    <id>https://meetparikh7.github.io/blog/posts/introducing-waylockrs/</id>
+    <content type="html">&lt;p&gt;If you use a Wayland compositor that is not part of a Desktop environment like GNOME or KDE, you have to install a bunch of utilities for doing desktop stuff - like toolbars, launchers, etc. A lot of these utilities are written in C. I implemented a lock screen utility called &lt;a href=&quot;https://github.com/meetparikh7/waylockrs&quot;&gt;waylockrs&lt;/a&gt; for such compositors in Rust, and this post explains the why, how and some small Rust learnings.&lt;/p&gt;
+&lt;p&gt;I had not developed an application using Wayland or the modern Linux Graphic stack before and it was a fun learning experience for me. This post should not require any Linux graphic stack knowledge but hopefully sheds some light on it.&lt;/p&gt;
+&lt;h1 id=&quot;why&quot;&gt;Why&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/swaywm/swaylock&quot;&gt;swaylock&lt;/a&gt; is a popular screen locking utility for wayland. In the &lt;code&gt;ext-session-lock-v1&lt;/code&gt; wayland protocol, which is used for this, the screen lock utility signals the compositor that the user has succesfully authenticated. This means there is flexibility in implementation of the &lt;code&gt;session-lock&lt;/code&gt;, i.e. it can be a screen saver or a lock-screen or a captcha challenge for when the robots take over. It also means, that if there were any bug in such a lock screen, the user can gain access to your computer, and say access your email or your active SSH sessions, or worse, the top-secret project plan that you have been procastinating over for a year.&lt;/p&gt;
+&lt;p&gt;Unfortunately the attack surface is rather large for a &amp;quot;practical lock-screen&amp;quot;, something that displays a image, maybe the clock and some typing indicator. There is a possibility of a buffer overflow or use-after-free attack to get the lock screen to send the unlock signal to the compositor. My aim was to write a drop-in replacement for swaylock in Rust, which can then be improved upon. As of now, swaylock is probably much more safer and hardened by years of development.&lt;/p&gt;
+&lt;h1 id=&quot;the-moving-parts&quot;&gt;The moving parts&lt;/h1&gt;
+&lt;p&gt;We use the following libraries to implement &lt;a href=&quot;https://github.com/meetparikh7/waylockrs&quot;&gt;waylockrs&lt;/a&gt;. (Feel free to skip this section
+)&lt;/p&gt;
+&lt;h2 id=&quot;wayland-and-smithay-client-toolkit&quot;&gt;Wayland &amp;amp; Smithay Client Toolkit&lt;/h2&gt;
+&lt;p&gt;Wayland itself works as a client-server model. The server is the wayland compositor and the client is the application, in this case the lock-screen. They talk in terms of messages and object handles. The object handles can be created and released by the client and the server frees them when they have no dangling references (like an &lt;code&gt;Arc&amp;lt;_&amp;gt;&lt;/code&gt; but across server/client). The messages can refer to these objects, for example &lt;code&gt;mouseA&lt;/code&gt; moved &lt;code&gt;10px&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Wayland is split out into protocols, each dealing with some aspect of a desktop, say one for monitors, one for input, one for windows and so on. On startup of an application you are provided a global object which lists all the protocols available, and you chose to instantiate an object for each protocol you care about.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://github.com/smithay/client-toolkit&quot;&gt;SCTK&lt;/a&gt; and other Smithay crates abstract away the wayland protocol. Typically when using the SCTK you have a global state object and then you implement a bunch of traits on them, one for each wayland protocol you want to handle. Then these trait handlers can be called in an event loop model. More details can be found in the &lt;a href=&quot;https://smithay.github.io/book/intro.html&quot;&gt;Smithay book&lt;/a&gt;. They even have a &lt;a href=&quot;https://github.com/Smithay/client-toolkit/blob/master/examples/session_lock.rs&quot;&gt;helpful example&lt;/a&gt; which locks and auto-unlocks the screen in 5 seconds.&lt;/p&gt;
+&lt;h2 id=&quot;pam&quot;&gt;PAM&lt;/h2&gt;
+&lt;p&gt;Most modern linux distros ship with PAM aka Pluggable Authentication Modules. This C library represents a Linux/BSD API allows you to authenticate the user and do more like fingerprint auth etc. For the purpose of authentication, it requires you to create a context object and pass a bunch of function pointers that the OS will call, for prompting for password etc. Luckily the &lt;a href=&quot;https://crates.io/crates/pam-client&quot;&gt;pam-client&lt;/a&gt; crate abstracts away the C API for us.&lt;/p&gt;
+&lt;h2 id=&quot;cairo&quot;&gt;Cairo&lt;/h2&gt;
+&lt;p&gt;Wayland is concerned around displays, surfaces and compositing, i.e laying out different windows on the screen. It does not give us drawing primitives like circles or textures, but instead gives you buffers of whatever size you request and allows you to paint those buffers on a &amp;quot;surface&amp;quot; which can be a (part of a) window or in the case of the lock screen the entire display.&lt;/p&gt;
+&lt;p&gt;A lock sreen without a background image or a typing indicator is not super user friendly. This is where graphics libraries like Cairo &amp;amp; Skia come in. They are the same ones used in browsers to render web pages. Cairo is the more user-friendly one and has friendly Rust &lt;a href=&quot;https://docs.rs/crate/cairo-rs/latest&quot;&gt;bindings&lt;/a&gt;. It also allowed me to port over swaylock&#39;s drawing code much easily (as it also uses Cairo).&lt;/p&gt;
+&lt;h1 id=&quot;the-learnings&quot;&gt;The learnings&lt;/h1&gt;
+&lt;h2 id=&quot;double-buffering&quot;&gt;Double Buffering&lt;/h2&gt;
+&lt;p&gt;Wayland and other graphics stuff like games in general use two memory buffers - one which is shown on the screen, and the other one which is being rendered too. Once rendering is finished, you &amp;quot;commit&amp;quot; the new buffer and the compositor choses when to display it.&lt;/p&gt;
+&lt;p&gt;For example if you were able to prepare the frame faster than the screen refresh rate, the compositor will wait for the next refresh to wait. If you had asked for the frame callback, the compositor would &amp;quot;call you&amp;quot; (emit a message in the channel) when this frame was drawn.&lt;/p&gt;
+&lt;p&gt;Since the compositor is always displaying a buffer that is stable and not being mutated, there is no screen tearing or flickering.&lt;/p&gt;
+&lt;p&gt;However implementing this is somewhat hard. A Wayland client can have multiple surfaces. Each surface can have subsurfaces. Subsurfaces maybe commited and &amp;quot;damaged&amp;quot; async, which means you have the power to not destroy a surface if it has not changed. We also need to handle the &amp;quot;configure&amp;quot; callback which tells us the surface size, when the window (or say the monitor resolution) changes. This callback is the one which actually lets us allocate the buffers as we now know the size of the area we are drawing and the number &amp;amp; size of channels.&lt;/p&gt;
+&lt;p&gt;For example in our lock screen, we have a background subsurface that displays an image and an indicator subsurface which displays the current time and a typing indicator. We ideally want to draw them async and not destroy the background subsurface unless the monitor resolution or window size has changed.&lt;/p&gt;
+&lt;p&gt;Thus the logic is somewhat like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Wait for the configure callback to allocate buffers&lt;/li&gt;
+&lt;li&gt;On configure, configure the surfaces and then invoke the draw function&lt;/li&gt;
+&lt;li&gt;In the draw function, for each subsurface:
+&lt;ol&gt;
+&lt;li&gt;Write a functions that draw to the surface given the information &lt;code&gt;buffer, width, height, did_resize&lt;/code&gt;. Here &lt;code&gt;buffer&lt;/code&gt; should be the buffer not &amp;quot;attached&amp;quot; (not being used) by Wayland.&lt;/li&gt;
+&lt;li&gt;This function can be smart and chose to not render if &lt;code&gt;did_resize = False&lt;/code&gt; and/or there are no UI changes&lt;/li&gt;
+&lt;li&gt;Thus this returns a boolean, which if &lt;code&gt;true&lt;/code&gt;, call the wayland proxy objects to destroy the subsurface and commit the new buffer&lt;/li&gt;
+&lt;li&gt;If a render did happen and a new frame has not been requested by another subsurface request a new frame.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;When the new_frame callback happens call the draw function again from the application&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Rust gives us the power to use &lt;code&gt;Option&lt;/code&gt; to represent a lot of this state, especially when a buffer is configured or not, and has first class functions, which when taken as generics have no cost. Using this we are able to abstract away the logic in step 3 into a neat &lt;a href=&quot;https://github.com/meetparikh7/waylockrs/blob/main/src/easy_surface.rs&quot;&gt;&lt;code&gt;easy_surface&lt;/code&gt;&lt;/a&gt; struct.&lt;/p&gt;
+&lt;h2 id=&quot;secstr-and-how-to-represent-the-password-buffer-in-memory&quot;&gt;&lt;code&gt;secstr&lt;/code&gt; and how to represent the password buffer in memory&lt;/h2&gt;
+&lt;p&gt;Representing the password in memory should be done with a &amp;quot;few security features&amp;quot;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;On the password buffer being &amp;quot;used&amp;quot;, i.e. on &amp;quot;drop&amp;quot;, the resident memory should be zero-ed out&lt;/li&gt;
+&lt;li&gt;Ideally the password buffer should never be written to swap memory
+&lt;ul&gt;
+&lt;li&gt;swap memory acts as a cache in case the current memory overflows&lt;/li&gt;
+&lt;li&gt;It is usually backed by a disk or SSD, i.e. non-temporary storage&lt;/li&gt;
+&lt;li&gt;Even after the password has been used, and if it has been paged to swap storage, the disk will contain the password bytes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Linux provides &lt;a href=&quot;https://linux.die.net/man/2/mlock&quot;&gt;&lt;code&gt;mlock&lt;/code&gt;&lt;/a&gt; / &lt;a href=&quot;https://linux.die.net/man/2/munlock&quot;&gt;&lt;code&gt;munlock&lt;/code&gt;&lt;/a&gt; syscalls which prevent a chunk of memory from being paged out to swap. We need a container that can represent a string / vector of bytes and that should invoke these syscalls.&lt;/p&gt;
+&lt;p&gt;The flow here looks like:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Allocate a chunk of memory&lt;/li&gt;
+&lt;li&gt;On keypress, try to append some characters to the buffer&lt;/li&gt;
+&lt;li&gt;If the buffer does not have capacity
+&lt;ol&gt;
+&lt;li&gt;Allocate a new buffer with enough capacity and &lt;code&gt;mlock&lt;/code&gt; it&lt;/li&gt;
+&lt;li&gt;Copy the original buffer and append the new characters&lt;/li&gt;
+&lt;li&gt;Zeroize the previous buffer, &lt;code&gt;munlock&lt;/code&gt; it and then release it&lt;/li&gt;
+&lt;li&gt;Point the content to the new buffer&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;On &lt;code&gt;enter&lt;/code&gt; key press, send this buffer to &lt;code&gt;PAM&lt;/code&gt; which would handle freeing it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Luckily the &lt;a href=&quot;https://crates.io/crates/secstr&quot;&gt;&lt;code&gt;secstr&lt;/code&gt;&lt;/a&gt; crate handles this for us. However it does not provide all the methods available on strings as the other use-case for this is to load immutable keys / tokens in memory. We wrap around the &lt;code&gt;SecVec&lt;/code&gt; provided within it to handle password entry user interactions, i.e. append new characters and backspace. On password enter we hand it over to the pam part.&lt;/p&gt;
+&lt;h2 id=&quot;pam-threading-and-channels-using-calloop&quot;&gt;&lt;code&gt;PAM&lt;/code&gt;, threading and channels using &lt;code&gt;calloop&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The Smithay crates operate in an event loop model which they call &lt;a href=&quot;https://docs.rs/calloop/latest/calloop/index.html&quot;&gt;&lt;code&gt;calloop&lt;/code&gt;&lt;/a&gt;. This exposes channels similar to &lt;a href=&quot;https://doc.rust-lang.org/std/sync/mpsc/fn.channel.html&quot;&gt;&lt;code&gt;std::sync&lt;/code&gt;&lt;/a&gt; but that can interact with automatically emit an event in the &lt;code&gt;calloop&lt;/code&gt; instead of blocking the thread.&lt;/p&gt;
+&lt;p&gt;The flow here is:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;On startup the application creates a thread&lt;/li&gt;
+&lt;li&gt;This thread initiates a PAM context to authenticate the (signed in) user&lt;/li&gt;
+&lt;li&gt;The PAM and main threads communicates via a calloop channel&lt;/li&gt;
+&lt;li&gt;The main thread inserts this channel as a &amp;quot;source&amp;quot; in its calloop with a callback that will be called if there is a message&lt;/li&gt;
+&lt;li&gt;When the user presses the &amp;quot;enter&amp;quot; key, a message to authenticate the user is sent via this channel&lt;/li&gt;
+&lt;li&gt;The PAM thread on receiving this message will:
+&lt;ul&gt;
+&lt;li&gt;Try to authenticate the user via PAM&lt;/li&gt;
+&lt;li&gt;Note this is a blocking call and PAM will add additional delay if there have been too many incorrect password attempts&lt;/li&gt;
+&lt;li&gt;On response from PAM the auth state - success / failure is sent back to the main thread on the channel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;While the PAM thread is authenticating, the main thread continues to run the calloop
+&lt;ol&gt;
+&lt;li&gt;The main thread calloop keeps processing wayland events, continuing to render - displaying an &amp;quot;authenticating&amp;quot; message, updating the clock, etc&lt;/li&gt;
+&lt;li&gt;If the auth channel has a new message, the corresponding registered callback is called which can access the application state and unlock the &lt;code&gt;session_lock&lt;/code&gt; or set state to invalid password, which would be displayed in the next render.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The calloop model along with channels provides and easy way to tie together blocking and unblocking APIs without having to deal with Rust async which can be troublesome with the borrow checker.&lt;/p&gt;
+&lt;h2 id=&quot;ai-and-backporting-settings-from-swaylock&quot;&gt;AI and backporting settings from swaylock&lt;/h2&gt;
+&lt;p&gt;One of the main features of the custom DE dream is customizability, which means a decent amount of config options. I wanted a modern &lt;a href=&quot;https://github.com/meetparikh7/waylockrs/blob/main/defaults.toml&quot;&gt;TOML config&lt;/a&gt; for waylockrs instead of the CLI arguments is config adopted by swaylock. Note that the TOML arguments we use are still primarily strings / booleans so they can be configured bia CLI arguments.&lt;/p&gt;
+&lt;p&gt;However I wanted to ease migration from swaylock and automatically port a swaylock config if one is detected. This requires parsing the swaylock config man page, finding out the corresponding keys in waylocksrs&#39; TOML config spec and create a mapping.&lt;/p&gt;
+&lt;p&gt;While I dont think LLMs as general purpose codign agents are great, LLMs excel at such small tasks, involving grokking small amounts of data and producing maybe invalid but still good enough code, especially if enough documentation / comments / language (i.e. English) are involved. I was able to quickly create a mapping between the two configs put it up in a separate module and easily port over swaylock configs.&lt;/p&gt;
+&lt;h1 id=&quot;summary&quot;&gt;Summary&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/meetparikh7/waylockrs&quot;&gt;waylockrs&lt;/a&gt; is avaialble to try out via DNF &lt;a href=&quot;https://copr.fedorainfracloud.org/coprs/meetp7/waylockrs/&quot;&gt;Copr&lt;/a&gt; or via building from source. Do report issues and feedback on the &lt;a href=&quot;https://github.com/meetparikh7/waylockrs/issues&quot;&gt;tracker&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Hopefully this blog was a good introduction to Wayland / PAM and Smithay! This was my first foray into the ecosystem, let me know your comments or if I made a mistake!&lt;/p&gt;
 </content>
   </entry>
 </feed>

@@ -2,47 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 	
 	<url>
-		<loc>https://example.com/blog/posts/firstpost/</loc>
-		<lastmod>2018-05-01</lastmod>
+		<loc>https://meetparikh7.github.io/blog/posts/introducing-waylockrs/</loc>
+		<lastmod>2025-07-25</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://example.com/blog/posts/secondpost/</loc>
-		<lastmod>2018-07-04</lastmod>
+		<loc>https://meetparikh7.github.io/blog/archive/</loc>
+		<lastmod>2025-08-20</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://example.com/blog/posts/thirdpost/</loc>
-		<lastmod>2018-08-24</lastmod>
+		<loc>https://meetparikh7.github.io/blog/</loc>
+		<lastmod>2025-08-20</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://example.com/blog/posts/fourthpost/</loc>
-		<lastmod>2018-09-30</lastmod>
+		<loc>https://meetparikh7.github.io/blog/tags/</loc>
+		<lastmod>2025-08-20</lastmod>
 	</url>
 	
 	<url>
-		<loc>https://example.com/blog/about/</loc>
-		<lastmod>2025-07-22</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://example.com/blog/archive/</loc>
-		<lastmod>2025-07-22</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://example.com/blog/</loc>
-		<lastmod>2025-07-22</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://example.com/blog/tags/</loc>
-		<lastmod>2025-07-22</lastmod>
-	</url>
-	
-	<url>
-		<loc>https://example.com/blog/feed/feed.xml</loc>
-		<lastmod>2025-07-22</lastmod>
+		<loc>https://meetparikh7.github.io/blog/feed/feed.xml</loc>
+		<lastmod>2025-08-20</lastmod>
 	</url>
 </urlset>
