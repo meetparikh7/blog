@@ -1,11 +1,19 @@
 export default {
-	title: "Eleventy Base Blog v9",
-	url: "https://example.com/",
+	title: "Meet's Ramblings",
+	url: "https://meetparikh7.github.io/blog/",
 	language: "en",
-	description: "I am writing about my experiences as a naval navel-gazer.",
+	description: "Ramblings about Rust, C++ & Python while creating projects",
 	author: {
-		name: "Your Name Here",
-		email: "youremailaddress@example.com",
-		url: "https://example.com/about-me/"
-	}
-}
+		name: "Meet Parikh",
+		url: "https://meetparikh7.github.io/",
+	},
+	utterances: `<script src="https://utteranc.es/client.js"
+    repo="meetparikh7/blog"
+    issue-term="pathname"
+    label="comments"
+    theme="preferred-color-scheme"
+    crossorigin="anonymous"
+    async
+    eleventy:ignore>
+	</script>`,
+};
