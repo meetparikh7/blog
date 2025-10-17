@@ -159,5 +159,5 @@ fn twind(input: String) {
 ```
 
 ## Conclusion
+`gpui_twind` was an experiment of bringing the ergonomics of Tailwind into the safety of Rust.\
 The broader takeaway is that this pattern can be used to create "reusable initializers" for "builder-style" patterns.
-`gpui_twind` was an experiment of bringing the ergonomics of Tailwind into the safety of Rust.
